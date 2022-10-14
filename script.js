@@ -96,6 +96,18 @@ const products = async (produto) => {
   });
 };
 
+const buttonEventListener = () => {
+  const ul = document.getElementsByClassName('cart__items')[0];
+  let child = ul.lastElementChild; 
+        while (child) {
+            ul.removeChild(child);
+            child = ul.lastElementChild;
+        }
+};
+
 window.onload = async () => {
   await products('computador');
+
+  const button = document.getElementsByClassName('empty-cart')[0];
+  button.addEventListener('click', buttonEventListener);
 };
