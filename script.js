@@ -104,6 +104,7 @@ const products = async (produto) => {
     item.appendChild(createProductItemElement({
       id, title, thumbnail }));
   });
+  document.getElementsByClassName('loading')[0].remove();
 };
 
 const buttonEventListener = () => {
@@ -115,7 +116,16 @@ const buttonEventListener = () => {
         }
 };
 
+function loading() {
+  const elemento = document.getElementsByClassName('cart-items')[0];
+  const paragrafo = document.createElement('p');
+  paragrafo.className = 'loading';
+  paragrafo.textContent = 'carregando...';
+  elemento.appendChild(paragrafo);
+}
+
 window.onload = async () => {
+  loading();
   await products('computador');
 
   const button = document.getElementsByClassName('empty-cart')[0];
