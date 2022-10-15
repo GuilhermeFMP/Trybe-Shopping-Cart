@@ -64,6 +64,15 @@ const cartItemClickListener = (event) => {
   cartContainer.appendChild(createCartItemElement({ id, title, price }));
 };
 
+const sumPrices = async (item) => {
+  const api = await fetchItem(item);
+  const { price } = api;
+  let soma = Number(document.getElementsByClassName('total-price')[0].innerText);
+  const total = document.getElementsByClassName('total-price')[0];
+  soma += Number(price);
+  total.innerText = soma.toFixed(2);
+};
+
 /**
  * Função que recupera o ID do produto passado como parâmetro.
  * @param {Element} product - Elemento do produto.
@@ -81,6 +90,7 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
   const button = createCustomElement('button', 'item__add', 'Adicionar ao carrinho!');
   button.addEventListener('click', async (event) => {
     items(getIdFromProductItem(event.target.parentElement));
+    sumPrices(getIdFromProductItem(event.target.parentElement));
   });
   section.appendChild(button);
 
