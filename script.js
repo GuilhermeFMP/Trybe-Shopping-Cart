@@ -116,13 +116,13 @@ const buttonEventListener = () => {
         }
 };
 
-function loading() {
-  const elemento = document.getElementsByClassName('cart-items')[0];
-  const paragrafo = document.createElement('p');
-  paragrafo.className = 'loading';
-  paragrafo.textContent = 'carregando...';
-  elemento.appendChild(paragrafo);
-}
+const loading = () => {
+  const item = document.getElementsByClassName('cart__items')[0];
+  const elemento = document.createElement('p');
+  elemento.className = 'loading';
+  elemento.textContent = 'carregando...';
+  item.appendChild(elemento);
+};
 
 window.onload = async () => {
   loading();
